@@ -3,6 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XbmcNet", "XbmcNet\XbmcNet.csproj", "{96D36F18-872A-431D-A623-EBD14E27CE3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1B50D2A0-F75A-4197-8833-5151BAA07C09}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XbmcNet.Test", "XbmcNet.Test\XbmcNet.Test.csproj", "{FA49E6C5-3AB3-43F1-A223-10D6F43A43AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +22,10 @@ Global
 		{96D36F18-872A-431D-A623-EBD14E27CE3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96D36F18-872A-431D-A623-EBD14E27CE3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96D36F18-872A-431D-A623-EBD14E27CE3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA49E6C5-3AB3-43F1-A223-10D6F43A43AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA49E6C5-3AB3-43F1-A223-10D6F43A43AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA49E6C5-3AB3-43F1-A223-10D6F43A43AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA49E6C5-3AB3-43F1-A223-10D6F43A43AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
