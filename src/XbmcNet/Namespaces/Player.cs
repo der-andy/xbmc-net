@@ -14,17 +14,25 @@ namespace XbmcNet.Namespaces
     /// </summary>
     public class Player : XbmcNamespace
     {
-        public Player(XbmcConnection xbmc)
+        internal Player(XbmcConnection xbmc)
             : base(xbmc)
         {
         }
 
+        /// <summary>
+        ///     5.9.1 Returns all active players
+        /// </summary>
         [PublicAPI]
         public async Task<ActivePlayer[]> GetActivePlayers()
         {
             return await Xbmc.SendRequest<ActivePlayer[]>(new RpcRequest("Player.GetActivePlayers"));
         }
 
+        /// <summary>
+        ///     5.9.2 Retrieves the currently played item
+        /// </summary>
+        /// <param name="playerId"></param>
+        /// <returns></returns>
         [PublicAPI]
         public async Task<All> GetItem(int playerId)
         {
@@ -38,19 +46,27 @@ namespace XbmcNet.Namespaces
             return response.Item;
         }
 
-
+        /// <summary>
+        /// Represents an active player (video or audio).
+        /// </summary>
         [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
         public class ActivePlayer
         {
+            /// <summary>
+            /// Returns the ID of this player.
+            /// </summary>
             [JsonProperty("playerid")]
             public int PlayerId { get; set; }
 
+            /// <summary>
+            /// Returns the type of this player, i.e. audio or video.
+            /// </summary>
             [JsonProperty("type")]
             public string Type { get; set; }
         }
 
         [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-        public class GetItemResponse
+        private class GetItemResponse
         {
             [JsonProperty("item")]
             public All Item { get; set; }
