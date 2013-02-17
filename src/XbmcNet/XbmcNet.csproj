@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\XbmcNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -68,6 +69,7 @@
     <Compile Include="Schema\Video\Details\Movie.cs" />
     <Compile Include="Schema\Video\Fields.cs" />
     <Compile Include="TcpReader.cs" />
+    <Compile Include="TimeSpanConverter.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="XbmcConnection.cs" />
     <Compile Include="XbmcNetException.cs" />
