@@ -12,6 +12,21 @@ namespace XbmcNet.Schema.List.Item
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class All : List.Item.Base
     {
+        [JsonProperty("channeltype")]
+        public string PvrChannelType { get; set; }
+
+        [JsonProperty("channel")]
+        public string Channel { get; set; }
+
+        [JsonProperty("starttime")]
+        public DateTimeOffset? StartTime { get; set; }
+
+        [JsonProperty("endtime")]
+        public DateTimeOffset? EndTime { get; set; }
+
+        [JsonProperty("channelnumber")]
+        public int? ChannelNumber { get; set; }
+
         [JsonProperty("hidden")]
         public bool Hidden { get; set; }
 

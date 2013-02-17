@@ -29,6 +29,8 @@ namespace XbmcNet.Schema.Video
                                "plotoutline",
                                "originaltitle",
                                "lastplayed",
+                               "dateadded",
+                               "tag",
                                "playcount",
                                "writer",
                                "studio",
@@ -47,7 +49,8 @@ namespace XbmcNet.Schema.Video
                                "file",
                                "sorttitle",
                                "resume",
-                               "setid"
+                               "setid",
+                               "art"
                            };
             }
         }

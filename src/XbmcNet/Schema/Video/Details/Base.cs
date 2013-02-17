@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using XbmcNet.External.ReSharperAnnotations;
+using XbmcNet.Schema.Media;
 
 namespace XbmcNet.Schema.Video.Details
 {
@@ -14,5 +15,8 @@ namespace XbmcNet.Schema.Video.Details
     {
         [JsonProperty("playcount")]
         public int? PlayCount { get; set; }
+
+        [JsonProperty("art")]
+        public Artwork Art { get; set; }
     }
 }
