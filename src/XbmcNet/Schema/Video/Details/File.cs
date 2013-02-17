@@ -10,7 +10,7 @@ namespace XbmcNet.Schema.Video.Details
     /// </summary>
     public class File : Video.Details.Item
     {
-        [JsonProperty("runtime")]
-        public int? Runtime { get; set; }
+        [JsonProperty("runtime"), JsonConverter(typeof(TimeSpanConverter))]
+        public TimeSpan? Runtime { get; set; }
     }
 }
