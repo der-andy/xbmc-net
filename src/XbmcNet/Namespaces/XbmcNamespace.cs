@@ -9,7 +9,7 @@ namespace XbmcNet.Namespaces
     /// </summary>
     public abstract class XbmcNamespace
     {
-        protected readonly XbmcConnection Xbmc;
+        internal readonly XbmcConnection Xbmc;
 
         internal XbmcNamespace(XbmcConnection xbmc)
         {
