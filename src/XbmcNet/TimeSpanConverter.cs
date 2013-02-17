@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace XbmcNet
 {
     /// <summary>
-    /// Reads an integer JSON token as a time span, assuming the integer represents the total seconds count.
+    ///     Reads an integer JSON token as a time span, assuming the integer represents the total seconds count.
     /// </summary>
     internal class TimeSpanConverter : JsonConverter
     {

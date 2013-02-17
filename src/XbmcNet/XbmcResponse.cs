@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using XbmcNet.External.ReSharperAnnotations;
 using XbmcNet.Schema;
 
 namespace XbmcNet
 {
-    public class XbmcResponse
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+    internal class XbmcResponse
     {
         protected XbmcResponse()
         {

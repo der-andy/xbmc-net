@@ -44,6 +44,7 @@ namespace XbmcNet.Namespaces
         /// <summary>
         ///     5.12.6 Retrieve details about a specific movie
         /// </summary>
+        [PublicAPI]
         public async Task<Movie> GetMovieDetails(int movieId)
         {
             var request = new RpcRequest("VideoLibrary.GetMovieDetails")

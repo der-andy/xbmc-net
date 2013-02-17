@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using XbmcNet.External.ReSharperAnnotations;
 
 namespace XbmcNet.Schema.List
 {
-    public class LimitsReturned
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+    internal class LimitsReturned
     {
         [JsonProperty("start")]
         public int Start { get; set; }

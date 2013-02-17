@@ -59,7 +59,6 @@
     <Compile Include="Schema\List\LimitsReturned.cs" />
     <Compile Include="Schema\Media\Details\Base.cs" />
     <Compile Include="Schema\RpcRequest.cs" />
-    <Compile Include="Schema\RpcResponse.cs" />
     <Compile Include="Namespaces\XbmcNamespace.cs" />
     <Compile Include="Namespaces\Player.cs" />
     <Compile Include="Schema\Video\Details\Base.cs" />
@@ -79,9 +78,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Schema\Player\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

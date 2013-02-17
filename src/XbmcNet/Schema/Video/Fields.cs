@@ -4,8 +4,14 @@ using System.Linq;
 
 namespace XbmcNet.Schema.Video
 {
+    /// <summary>
+    /// Contains field definitions.
+    /// </summary>
     public static class Fields
     {
+        /// <summary>
+        ///     6.20.14 Returns all requestable fields for movie requests (Video.Fields.Movie)
+        /// </summary>
         public static string[] Movie
         {
             get

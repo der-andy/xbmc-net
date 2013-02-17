@@ -8,6 +8,10 @@ namespace XbmcNet
 {
     internal static class Tools
     {
+        /// <summary>
+        ///     Returns a pseudo-random string of the specified length, containing alpha-numeric characters.
+        /// </summary>
+        /// <param name="length">Desired length of the resulting string.</param>
         public static string GenerateString(int length = 16)
         {
             var r = new Random();
@@ -23,7 +27,7 @@ namespace XbmcNet
         }
 
         /// <summary>
-        /// Returns the JSON property names of all public properties in the specified class.
+        ///     Returns the JSON property names of all public properties in the specified class.
         /// </summary>
         public static string[] GetAllProperties<T>()
         {

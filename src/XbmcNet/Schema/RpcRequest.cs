@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using XbmcNet.External.ReSharperAnnotations;
 
 namespace XbmcNet.Schema
 {
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     internal class RpcRequest
     {
-        public RpcRequest()
+        private RpcRequest()
         {
             Id = Tools.GenerateString();
         }
@@ -31,6 +33,6 @@ namespace XbmcNet.Schema
         public object Params { get; set; }
 
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Id { get; private set; }
     }
 }
