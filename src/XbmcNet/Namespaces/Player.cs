@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using XbmcNet.External.ReSharperAnnotations;
+using XbmcNet.Namespaces.Notifications;
 using XbmcNet.Schema;
 using XbmcNet.Schema.List.Item;
 
@@ -18,6 +19,24 @@ namespace XbmcNet.Namespaces
             : base(xbmc)
         {
         }
+
+        /// <summary>
+        ///     7.4.1 Playback of a media item has been paused. If there is no ID available extra information will be provided.
+        /// </summary>
+        [PublicAPI]
+        public event PlaybackEventHandler OnPause;
+
+        /// <summary>
+        ///     7.4.2 Playback of a media item has been started or the playback speed has changed. If there is no ID available extra information will be provided.
+        /// </summary>
+        [PublicAPI]
+        public event PlaybackEventHandler OnPlay;
+
+        /// <summary>
+        ///     7.4.5 Speed of the playback of a media item has been changed. If there is no ID available extra information will be provided.
+        /// </summary>
+        [PublicAPI]
+        public event PlaybackEventHandler OnSpeedChanged;
 
         /// <summary>
         ///     5.9.1 Returns all active players

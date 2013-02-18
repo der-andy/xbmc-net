@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="External\ReSharperAnnotations\ReSharperAnnotations.cs" />
+    <Compile Include="Namespaces\Application.cs" />
+    <Compile Include="Namespaces\Notifications\Application.cs" />
+    <Compile Include="Namespaces\Notifications\Player.cs" />
     <Compile Include="Namespaces\VideoLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Error.cs" />
@@ -60,6 +63,8 @@
     <Compile Include="Schema\List\LimitsReturned.cs" />
     <Compile Include="Schema\Media\Artwork.cs" />
     <Compile Include="Schema\Media\Details\Base.cs" />
+    <Compile Include="Schema\Notification.cs" />
+    <Compile Include="Schema\NotificationParams.cs" />
     <Compile Include="Schema\RpcRequest.cs" />
     <Compile Include="Namespaces\XbmcNamespace.cs" />
     <Compile Include="Namespaces\Player.cs" />

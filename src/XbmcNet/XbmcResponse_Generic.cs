@@ -7,12 +7,8 @@ using XbmcNet.External.ReSharperAnnotations;
 namespace XbmcNet
 {
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    internal class XbmcResponse<T> : XbmcResponse where T : class
+    internal class XbmcResponse<T> : XbmcResponse
     {
-        internal XbmcResponse()
-        {
-        }
-
         [JsonProperty("result")]
         public T Result { get; set; }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -29,6 +30,7 @@ namespace XbmcNet
         private readonly Dictionary<string, JObject> _responses = new Dictionary<string, JObject>();
         private string _messageBuffer = "";
         private TcpReader _reader;
+        private bool _trace;
 
         /// <summary>
         ///     Initiates a new connection to an XBMC server.
@@ -40,6 +42,7 @@ namespace XbmcNet
             Host = host;
             Port = port;
 
+            Application = new Application(this);
             Player = new Player(this);
             VideoLibrary = new VideoLibrary(this);
 
@@ -66,6 +69,12 @@ namespace XbmcNet
         ///     Provides access to the functions of the XBMC Player namespace.
         /// </summary>
         [PublicAPI]
+        public Application Application { get; private set; }
+
+        /// <summary>
+        ///     Provides access to the functions of the XBMC Player namespace.
+        /// </summary>
+        [PublicAPI]
         public Player Player { get; private set; }
 
         /// <summary>
@@ -75,6 +84,17 @@ namespace XbmcNet
         public VideoLibrary VideoLibrary { get; private set; }
 
         #endregion
+
+#if DEBUG
+        /// <summary>
+        /// Writes all communication to the console
+        /// </summary>
+        [PublicAPI]
+        public void EnableTraceOutput()
+        {
+            _trace = true;
+        }
+#endif
 
         /// <summary>
         ///     Tries to establish a connection to the XBMC server.
@@ -150,6 +170,11 @@ namespace XbmcNet
 
         private void ProcessMessage(string msg)
         {
+            if (_trace)
+            {
+                Console.WriteLine("<<< " + msg);
+            }
+
             JObject obj = JObject.Parse(msg);
 
             var id = (string) obj["id"];
@@ -167,7 +192,20 @@ namespace XbmcNet
 
         private void ProcessNotification(JObject jObject)
         {
-            // foo
+            var rpc = jObject.ToObject<Notification>();
+
+            var m = Regex.Match(rpc.Method, @"^(?<namespace>[a-z]+)\.(?<method>[a-z]+)$", RegexOptions.IgnoreCase);
+
+            if (!m.Success)
+            {
+                return;
+            }
+
+            var ns = m.Groups["namespace"].Value;
+            var method = m.Groups["method"].Value;
+
+            var nsObject = (XbmcNamespace) GetType().GetProperty(ns).GetValue(this);
+            nsObject.ProcessNotification(method, rpc.Params.Data);
         }
 
         /// <summary>
@@ -175,7 +213,7 @@ namespace XbmcNet
         /// </summary>
         /// <typeparam name="T">The type the response will be deserialized to.</typeparam>
         /// <param name="request">The request to send to the server.</param>
-        internal async Task<T> SendRequest<T>(RpcRequest request) where T : class
+        internal async Task<T> SendRequest<T>(RpcRequest request)
         {
             if (_client == null || !_client.Connected)
             {
@@ -183,7 +221,12 @@ namespace XbmcNet
             }
 
             string json = JsonConvert.SerializeObject(request, Formatting.None);
-            //Trace.WriteLine(json);
+            
+            if (_trace)
+            {
+                Console.WriteLine(">>> " + json);
+            }
+            
             byte[] bytes = ConnectionEncoding.GetBytes(json);
 
             _client.GetStream().Write(bytes, 0, bytes.Length);
@@ -197,13 +240,13 @@ namespace XbmcNet
         /// <summary>
         ///     Waits for a response for the request with the specified ID.
         /// </summary>
-        private T WaitForReply<T>(object state) where T : class
+        private T WaitForReply<T>(object state)
         {
             var id = (string) state;
 
             if (!_events.ContainsKey(id))
             {
-                return null;
+                return default(T);
             }
 
             ManualResetEventSlim e = _events[id];
@@ -211,7 +254,7 @@ namespace XbmcNet
 
             if (!_responses.ContainsKey(id))
             {
-                return null;
+                return default(T);
             }
 
             JObject json = _responses[id];
@@ -228,7 +271,7 @@ namespace XbmcNet
             }
             catch
             {
-                return null;
+                return default(T);
             }
 
             if (response.Error != null)
